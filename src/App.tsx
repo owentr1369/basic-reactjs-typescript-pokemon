@@ -1,6 +1,23 @@
 import './App.css'
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+interface Pokemons {
+  name: string,
+  url: string
+}
+const App: React.FC = () => {
+  const [pokemons, setPokemons] = useState<string[]>([])
+  useEffect(() => {
+    const getPokemon = async () => {
+      const res = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=20&offset=20')
+      res.data.results.forEach(async (pokemon: Pokemons) => {
+        const poke = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
+        console.log('poke.data :>> ', poke.data);
+      })
+    }
+    getPokemon()
+  }, [])
 
-const App:React.FC = ()=> {
   return (
     <div className="App">
       <div className="container">
