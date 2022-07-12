@@ -1,9 +1,11 @@
+import './App.css'
 
-
-function App() {
+const App:React.FC = ()=> {
   return (
     <div className="App">
-      <h1>Hello</h1>
+      <div className="container">
+        <header className="pokemon-header">Pokemon</header>
+      </div>
     </div>
   );
 }
